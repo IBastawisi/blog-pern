@@ -1,0 +1,89 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Blog API",
+  "dateExported": "2022-07-21T22:58:28.691Z",
+  "version": "1.1",
+  "folders": [],
+  "requests": [
+    {
+      "_id": "d0234a54-e138-4184-a282-e4c4d18acf97",
+      "colId": "f3375f4c-87b7-4406-b9d1-18cc06533055",
+      "containerId": "",
+      "name": "Get All",
+      "url": "http://localhost:3001/api/blogs",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2022-07-21T22:39:36.112Z",
+      "modified": "2022-07-21T22:39:36.112Z",
+      "headers": [],
+      "params": [],
+      "tests": []
+    },
+    {
+      "_id": "2cfe22f9-d2a3-42ca-85d0-04e88e6236fe",
+      "colId": "f3375f4c-87b7-4406-b9d1-18cc06533055",
+      "containerId": "",
+      "name": "Create Blog",
+      "url": "http://localhost:3001/api/blogs",
+      "method": "POST",
+      "sortNum": 20000,
+      "created": "2022-07-21T22:40:18.219Z",
+      "modified": "2022-07-21T22:40:18.219Z",
+      "headers": [],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"author\": \"IBastawisi\",\n  \"title\": \"Portfolio\",\n  \"url\": \"https://ibastawisi.dev/\"\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "_id": "8d991ff9-932c-4062-a330-bc255bf9cd4b",
+      "colId": "f3375f4c-87b7-4406-b9d1-18cc06533055",
+      "containerId": "",
+      "name": "Get Blog",
+      "url": "http://localhost:3001/api/blogs/1",
+      "method": "GET",
+      "sortNum": 25000,
+      "created": "2022-07-21T22:52:57.174Z",
+      "modified": "2022-07-21T22:54:11.092Z",
+      "headers": [],
+      "params": [],
+      "tests": []
+    },
+    {
+      "_id": "93d521ba-7716-4d80-a9e4-097074c6f161",
+      "colId": "f3375f4c-87b7-4406-b9d1-18cc06533055",
+      "containerId": "",
+      "name": "Update Blog",
+      "url": "http://localhost:3001/api/blogs/1",
+      "method": "PUT",
+      "sortNum": 30000,
+      "created": "2022-07-21T22:41:11.127Z",
+      "modified": "2022-07-21T22:52:12.405Z",
+      "headers": [],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"likes\": 4\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "_id": "b0fec1f2-843c-405d-83c7-e20b8a482acf",
+      "colId": "f3375f4c-87b7-4406-b9d1-18cc06533055",
+      "containerId": "",
+      "name": "Delete Blog",
+      "url": "http://localhost:3001/api/blogs/2",
+      "method": "DELETE",
+      "sortNum": 40000,
+      "created": "2022-07-21T22:56:24.546Z",
+      "modified": "2022-07-21T22:58:04.617Z",
+      "headers": [],
+      "params": [],
+      "tests": []
+    }
+  ]
+}
