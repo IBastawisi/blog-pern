@@ -1,5 +1,4 @@
-import Blog from "./blog";
+import Blog from "./blog.model";
+import User from "./user.model";
 
-Blog.sync();
-
-export { Blog };
+export { Blog, User };

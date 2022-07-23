@@ -1,5 +1,6 @@
-import { Sequelize } from 'sequelize';
-import { DATABASE_URL } from './config';
+import { Sequelize } from 'sequelize-typescript';
+import { Blog, User } from '../models';
+import { DATABASE_URL } from './env.config';
 
 const sequelize = new Sequelize(DATABASE_URL!, {
   dialectOptions: {
@@ -9,6 +10,11 @@ const sequelize = new Sequelize(DATABASE_URL!, {
     }
   },
 });
+
+sequelize.addModels([User, Blog]);
+
+User.sync({ alter: true });
+Blog.sync({ alter: true });
 
 const connectToDatabase = async () => {
   try {

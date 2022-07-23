@@ -1,18 +1,26 @@
 import { Router } from "express";
-import { Blog } from "../models";
+import { Blog, User } from "../models";
 import blogFinder, { blogFinderParams } from "../middlewares/blogFinder";
+import isAuthenticated from "../middlewares/isAuthenticated";
 import 'express-async-errors';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const blogs = await Blog.findAll();
+  const blogs = await Blog.findAll({
+    attributes: { exclude: ['userId'] },
+    include: {
+      model: User,
+      attributes: ['name']
+    }
+  });
   res.json(blogs);
 });
 
-router.post('/', async (req, res, next) => {
-  const blog = await Blog.create(req.body)
-  return res.json(blog)
+router.post('/', isAuthenticated, async (req, res, next) => {
+  const user = req.user as User;
+  const blog = await Blog.create({ ...req.body, userId: user.id });
+  return res.json(blog);
 });
 
 router.get<blogFinderParams>('/:id', blogFinder, async (req, res) => {
@@ -34,9 +42,11 @@ router.put<blogFinderParams>('/:id', blogFinder, async (req, res) => {
   }
 });
 
-router.delete<blogFinderParams>('/:id', blogFinder, async (req, res) => {
-  const blog = await Blog.findByPk(req.params.id)
-  if (blog) {
+router.delete<blogFinderParams>('/:id', isAuthenticated, blogFinder, async (req, res) => {
+  const blog = await Blog.findByPk(req.params.id);
+  const user = req.user as User;
+
+  if (blog && blog.userId === user.id) {
     await blog.destroy();
   }
   res.status(204).end()
