@@ -7,8 +7,8 @@ const isAuthenticated: RequestHandler = async (req, res, next) => {
   try {
     assertUser(req);
     next();
-  } catch (error) { 
-    res.status(401).send("You are not authenticated");
+  } catch (error: any) { 
+    res.status(401).send(error.message);
   }
 };
 

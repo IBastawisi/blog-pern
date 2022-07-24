@@ -19,6 +19,11 @@ router.get('/', async (req, res) => {
 
 router.post('/', isAuthenticated, async (req, res, next) => {
   const user = req.user as User;
+  if (user.disabled) {
+    return res.status(401).json({
+      error: 'account disabled, please contact admin'
+    })
+  }
   const blog = await Blog.create({ ...req.body, userId: user.id });
   return res.json(blog);
 });

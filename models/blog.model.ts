@@ -1,7 +1,7 @@
 import { Table, Column, Model, HasMany, Default, BelongsTo, ForeignKey } from 'sequelize-typescript'
 import User from './user.model';
 
-@Table({ timestamps: true })
+@Table({tableName: 'blogs', timestamps: true })
 class Blog extends Model {
   @Column({ primaryKey: true, autoIncrement: true })
   id: number;

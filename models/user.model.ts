@@ -1,7 +1,7 @@
 import { Table, Column, Model, HasMany } from 'sequelize-typescript'
 import Blog from './blog.model';
 
-@Table({ timestamps: true })
+@Table({ tableName: 'users', timestamps: true })
 class User extends Model {
   @Column({ primaryKey: true, autoIncrement: true })
   id: number;
@@ -15,6 +15,10 @@ class User extends Model {
   picture: string;
   @HasMany(() => Blog)
   blogs: Blog[];
+  @Column({ defaultValue: false })
+  admin: boolean;
+  @Column({ defaultValue: false })
+  disabled: boolean;
 }
 
 export default User

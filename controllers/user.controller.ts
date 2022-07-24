@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import isAdmin from '../middlewares/isAdmin';
 import isAuthenticated from '../middlewares/isAuthenticated';
 
 const router = Router()
@@ -20,7 +21,7 @@ router.get('/', async (req, res) => {
   res.json(users)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', isAdmin, async (req, res) => {
   try {
     const user = await User.create(req.body)
     res.json(user)
@@ -37,5 +38,15 @@ router.get('/:id', async (req, res) => {
     res.status(404).end()
   }
 })
+
+router.put('/:id', isAdmin, async (req, res) => {
+  const user = await User.findByPk(req.params.id)
+  if (user) {
+    await user.update(req.body)
+    res.json(user)
+  } else {
+    res.status(404).end()
+  }
+});
 
 export default router;
